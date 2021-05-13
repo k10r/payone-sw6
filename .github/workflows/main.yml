@@ -3,7 +3,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  run:
+  ci:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       max-parallel: 15
@@ -51,4 +51,6 @@ jobs:
         composer install --prefer-dist --no-ansi --no-interaction --no-progress --optimize-autoloader --no-scripts
         php /tmp/shopware/bin/console plugin:refresh
         php /tmp/shopware/bin/console plugin:install --activate PayonePayment
+        /tmp/shopware/custom/plugins/PayonePayment/vendor/bin/phpunit -v
+        /tmp/shopware/vendor/bin/phpunit -v
         /tmp/shopware/custom/plugins/PayonePayment/vendor/bin/phpunit --configuration custom/plugins/PayonePayment/phpunit.xml.dist

@@ -3,7 +3,7 @@ name: CI-64
 on: [push, pull_request]
 
 jobs:
-  run:
+  ci-64:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       max-parallel: 15
